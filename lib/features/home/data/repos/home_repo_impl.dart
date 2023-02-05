@@ -1,15 +1,33 @@
 import 'package:bookly/core/errors/failures.dart';
+import 'package:bookly/core/utils/api_service.dart';
 import 'package:bookly/features/home/data/models/models.dart';
 import 'package:bookly/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class HomeRepoImpl implements HomeRepo{
-  @override
-  Future<Either<Failure, List<BookModel>>> fetchBestSellerBooks() {
-   Dio().get()
-  }
+  final ApiService apiService;
 
+  HomeRepoImpl(this.apiService);
+  @override
+  //Request
+  Future<Either<Failure, List<BookModel>>> fetchNewsetBooks() async{
+   try{
+     var data =  await apiService.getData(
+       endPoint: 'volumes?q=subject:Programming&Filtering=free-ebooks&Sorting=newest',
+     );
+     List<BookModel> books = [];
+     for(var item in data['items'])
+       {
+          books.add(BookModel.fromJson(item));
+       }
+     //right because I use Either so I need to identify right or left
+     return right(books);
+   } catch(e)
+    {
+      return left(ServerFailure());
+    }
+  }
   @override
   Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() {
     // TODO: implement fetchFeaturedBooks

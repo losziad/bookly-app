@@ -21,7 +21,6 @@ abstract class AppRouter{
         path: '/',
         builder: (context, state) => const SplashView(),
       ),
-
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),

@@ -1,4 +1,5 @@
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/data/models/models.dart';
 import 'package:bookly/features/home/presention/views/widgets/best_seller_list_view_item.dart';
 import 'package:bookly/features/search/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -55,3 +56,5 @@ class SearchResultListView extends StatelessWidget {
     );
   }
 }
+
+

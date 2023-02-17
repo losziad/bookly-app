@@ -13,7 +13,7 @@ class CustomBookDetailsAppBar extends StatelessWidget {
         IconButton(
           onPressed: ()
           {
-            GoRouter.of(context).push(AppRouter.kHomeView);
+            GoRouter.of(context).pop();
             },
           icon: const Icon(
             Icons.close,
